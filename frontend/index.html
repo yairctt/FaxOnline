@@ -780,11 +780,8 @@
     <div class="conn-icon">🔌</div>
     <div class="conn-title">Backend no disponible</div>
     <div class="conn-sub">
-      El servidor Java no está corriendo o CORS no está habilitado.<br>
-      Inicia el backend con:
+      El servidor Java no está corriendo.<br>
     </div>
-    <div class="conn-url">java -jar fax-backend.jar</div>
-    <div class="conn-sub">Se escucha en <strong>http://localhost:8080</strong></div>
     <button class="btn-dismiss" onclick="dismissOverlay()">Entendido</button>
   </div>
 
@@ -849,7 +846,7 @@
         <!-- Tab: Resultado -->
         <div class="tab-panel active" id="panel-resultado">
           <div class="empty-state" id="empty-resultado">
-            <div class="empty-icon">⚡</div>
+            <div class="empty-icon"></div>
             <div class="empty-title">Sin resultados aún</div>
             <div class="empty-sub">
               Escribe código FAX en el editor<br>y presiona <strong>Compilar</strong>
@@ -861,7 +858,7 @@
         <!-- Tab: Errores -->
         <div class="tab-panel" id="panel-errores">
           <div class="empty-state" id="empty-errores">
-            <div class="empty-icon">✅</div>
+            <div class="empty-icon"></div>
             <div class="empty-title">Sin errores</div>
             <div class="empty-sub">Los errores de compilación<br>aparecerán aquí</div>
           </div>
@@ -871,7 +868,7 @@
         <!-- Tab: Raw -->
         <div class="tab-panel" id="panel-raw">
           <div class="empty-state" id="empty-raw">
-            <div class="empty-icon">📄</div>
+            <div class="empty-icon"></div>
             <div class="empty-title">Sin salida</div>
             <div class="empty-sub">La salida completa del compilador<br>aparecerá aquí</div>
           </div>
@@ -886,7 +883,7 @@
     // ─────────────────────────────────────────────────────────────
     //  CONFIG
     // ─────────────────────────────────────────────────────────────
-    const BACKEND_URL = 'http://localhost:8080/compilar';
+    const BACKEND_URL = 'https://fax-backend-production-6527.up.railway.app/compilar';
 
     // ─────────────────────────────────────────────────────────────
     //  STATE
@@ -962,7 +959,7 @@
     async function checkBackend() {
       const badge = document.getElementById('backend-badge');
       try {
-        const r = await fetch('http://localhost:8080/ping', { method: 'GET', signal: AbortSignal.timeout(5000) });
+        const r = await fetch('https://fax-backend-production-6527.up.railway.app/ping', { method: 'GET', signal: AbortSignal.timeout(5000) });
         if (r.ok) {
           badge.textContent = '● online';
           badge.className = 'backend-badge online';
